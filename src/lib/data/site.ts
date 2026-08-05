@@ -72,7 +72,7 @@ export const signatureMethodology = {
   ],
 } as const;
 
-export const aboutParagraphs = [] as const;
+export const aboutParagraphs: readonly string[] = [];
 
 export const services = [
   {
