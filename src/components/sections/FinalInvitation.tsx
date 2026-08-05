@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/ui/FadeIn";
-import { finalInvitation, siteConfig } from "@/lib/data/site";
+import { finalInvitation } from "@/lib/data/site";
 
 export function FinalInvitation() {
   return (
@@ -28,7 +28,7 @@ export function FinalInvitation() {
           </p>
           <p className="mt-2 text-sm text-subtext/80">{finalInvitation.duration}</p>
           <div className="mt-8">
-            <Button href={`${siteConfig.calendlyUrl}/discovery-call`} size="lg" external>
+            <Button href="https://calendly.com/kirstan-kirstanearl/30min" size="lg" external>
               Book Your Free Call
             </Button>
           </div>
