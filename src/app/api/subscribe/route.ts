@@ -1,0 +1,16 @@
+import { NextResponse } from "next/server";
+
+/** Legacy filesystem lead capture — disabled for security. Use /api/waitlist or /api/contact. */
+export async function POST() {
+  return NextResponse.json(
+    { error: "This endpoint is no longer available." },
+    { status: 410 }
+  );
+}
+
+export async function GET() {
+  return NextResponse.json(
+    { error: "This endpoint is no longer available." },
+    { status: 410 }
+  );
+}
