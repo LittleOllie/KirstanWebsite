@@ -8,6 +8,7 @@ export const siteConfig = {
   substack: "https://substack.com/@kirstanearl",
   substackHandle: "@kirstanearl",
   calendlyUrl: "https://calendly.com/kirstanearl",
+  freeConnectionCallUrl: "https://calendly.com/kirstan-kirstanearl/freecc",
   description:
     "A grounded and compassionate space to uncover and heal the root causes beneath the patterns, beliefs and emotional wounds that keep you feeling stuck, so you can trust your inner wisdom, live authentically and experience true freedom.",
   images: {
@@ -16,7 +17,7 @@ export const siteConfig = {
 } as const;
 
 export const heroStatement =
-  "Transformation is remembering who you are when you're no longer carrying everything that was never yours to begin with.";
+  "Healing isn't about becoming someone new...\nIt's about remembering who you are";
 
 export type NavLink = {
   label: string;
@@ -90,6 +91,17 @@ export const services = [
     bookSessionHref: "https://calendly.com/kirstan-kirstanearl/healingsession",
   },
   {
+    id: "healing-room",
+    title: "The Healing Room",
+    paragraphs: [
+      "A small intimate healing container for 6 women to come together fortnightly on Zoom for reflection, personal guidance, witnessing and healing. A bridge between navigating your journey on your own and receiving personalised 1:1 support.",
+    ],
+    slug: "healing-room",
+    showLearnMore: true,
+    learnMoreHref: "/waitlist",
+    showBookSession: false,
+  },
+  {
     id: "private-mentorship",
     title: "Private Mentorship",
     paragraphs: [
@@ -103,19 +115,7 @@ export const services = [
     showLearnMore: false,
     showBookSession: false,
     ctaLabel: "Book a FREE Connection Call",
-    ctaHref: "https://calendly.com/kirstan-kirstanearl/30min",
-  },
-  {
-    id: "healing-room",
-    title: "The Healing Room",
-    paragraphs: [
-      "A small intimate healing container for women ready to reconnect with themselves, explore beneath the surface and create lasting change.",
-      "The Healing Room is a space for 6 women to come together fortnightly on Zoom for reflection, personal guidance, witnessing and healing. A bridge between navigating your journey on your own and receiving personalised 1:1 support.",
-    ],
-    slug: "healing-room",
-    showLearnMore: true,
-    learnMoreHref: "/waitlist",
-    showBookSession: false,
+    ctaHref: siteConfig.freeConnectionCallUrl,
   },
 ] as const;
 
@@ -282,7 +282,7 @@ export const footerLinks = {
     { label: "Home", href: "/#home" },
     { label: "Sessions", href: "/#services" },
     { label: "Testimonials", href: "/#testimonials" },
-    { label: "Waitlist", href: "/waitlist" },
+    { label: "Healing Room", href: "/waitlist" },
     { label: "Contact", href: "/contact" },
     { label: "Book Now", href: "/#book" },
   ],

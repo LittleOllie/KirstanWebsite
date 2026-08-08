@@ -79,6 +79,12 @@ export function validateSurveyPayload(
       if (value.length > MAX_CHECKBOX_ITEMS) {
         throw new Error(`${question.label} has too many selections.`);
       }
+      const maxSelections = question.maxSelections ?? MAX_CHECKBOX_ITEMS;
+      if (value.length > maxSelections) {
+        throw new Error(
+          `${question.label}: please select up to ${maxSelections}.`
+        );
+      }
 
       const allowed = question.options ? new Set(question.options) : null;
       const items = value.map(String);

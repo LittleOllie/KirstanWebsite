@@ -3,6 +3,7 @@
 import { SurveyField } from "@/components/forms/SurveyField";
 import { Button } from "@/components/ui/Button";
 import { waitlistConfig, waitlistFormQuestions } from "@/lib/waitlist/survey";
+import type { SurveyQuestion } from "@/lib/waitlist/types";
 import { useState } from "react";
 
 type FormValues = Record<string, string | string[]>;
@@ -15,11 +16,57 @@ function initialValues(): FormValues {
   return values;
 }
 
+type FormBlock =
+  | { kind: "field"; question: SurveyQuestion }
+  | {
+      kind: "preferenceSection";
+      title: string;
+      groups: { title: string; questions: SurveyQuestion[] }[];
+    };
+
+function buildFormBlocks(questions: SurveyQuestion[]): FormBlock[] {
+  const blocks: FormBlock[] = [];
+  let index = 0;
+
+  while (index < questions.length) {
+    const question = questions[index];
+    if (!question.group) {
+      blocks.push({ kind: "field", question });
+      index += 1;
+      continue;
+    }
+
+    const groups: { title: string; questions: SurveyQuestion[] }[] = [];
+    while (index < questions.length && questions[index].group) {
+      const title = questions[index].group!;
+      const grouped: SurveyQuestion[] = [];
+      while (index < questions.length && questions[index].group === title) {
+        grouped.push(questions[index]);
+        index += 1;
+      }
+      groups.push({ title, questions: grouped });
+    }
+
+    blocks.push({
+      kind: "preferenceSection",
+      title: "Preferred Group Time",
+      groups,
+    });
+  }
+
+  return blocks;
+}
+
 export function WaitlistForm() {
   const [values, setValues] = useState<FormValues>(initialValues);
   const [website, setWebsite] = useState(""); // honeypot — leave empty
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
+  const blocks = buildFormBlocks(waitlistFormQuestions);
+
+  function updateField(id: string, value: string | string[]) {
+    setValues((prev) => ({ ...prev, [id]: value }));
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -74,19 +121,52 @@ export function WaitlistForm() {
       noValidate
     >
       <div className="space-y-5">
-        {waitlistFormQuestions.map((question) => (
-          <div key={question.id}>
-            <label htmlFor={question.id} className="block text-sm text-text mb-2">
-              {question.label}
-              {question.required && <span className="text-subtext"> *</span>}
-            </label>
-            <SurveyField
-              question={question}
-              value={values[question.id]}
-              onChange={(value) => setValues((prev) => ({ ...prev, [question.id]: value }))}
-            />
-          </div>
-        ))}
+        {blocks.map((block) => {
+          if (block.kind === "field") {
+            const { question } = block;
+            return (
+              <div key={question.id}>
+                <label htmlFor={question.id} className="block text-sm text-text mb-2">
+                  {question.label}
+                  {question.required && <span className="text-subtext"> *</span>}
+                </label>
+                <SurveyField
+                  question={question}
+                  value={values[question.id]}
+                  onChange={(value) => updateField(question.id, value)}
+                />
+              </div>
+            );
+          }
+
+          return (
+            <div key={block.title} className="space-y-4">
+              <p className="text-sm text-text font-medium">{block.title}</p>
+              {block.groups.map((group) => (
+                <div
+                  key={group.title}
+                  className="rounded-soft border border-accent/20 bg-background-secondary/40 p-4 md:p-5 space-y-4"
+                >
+                  <p className="text-sm font-medium text-text tracking-wide">{group.title}</p>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {group.questions.map((question) => (
+                      <div key={question.id}>
+                        <label htmlFor={question.id} className="block text-sm text-text mb-2">
+                          {question.label}
+                        </label>
+                        <SurveyField
+                          question={question}
+                          value={values[question.id]}
+                          onChange={(value) => updateField(question.id, value)}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          );
+        })}
       </div>
 
       {/* Honeypot for bots — hidden from people */}

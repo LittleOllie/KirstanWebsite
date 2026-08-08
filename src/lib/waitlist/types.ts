@@ -5,8 +5,13 @@ export interface SurveyQuestion {
   type: SurveyQuestionType;
   label: string;
   placeholder?: string;
+  hint?: string;
   required?: boolean;
   options?: readonly string[];
+  /** Max selections for checkbox questions */
+  maxSelections?: number;
+  /** Visual group heading in the form (e.g. "Option 1") */
+  group?: string;
 }
 
 export interface WaitlistSignup {

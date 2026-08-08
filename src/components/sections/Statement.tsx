@@ -20,7 +20,7 @@ export function Statement() {
               &ldquo;
             </div>
 
-            <p className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[2.35rem] leading-snug md:leading-snug text-text tracking-tight italic -mt-6 md:-mt-8 px-2">
+            <p className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[2.35rem] leading-snug md:leading-snug text-text tracking-tight italic whitespace-pre-line -mt-6 md:-mt-8 px-2">
               {heroStatement}
             </p>
 

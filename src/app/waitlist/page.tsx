@@ -9,15 +9,27 @@ export const metadata: Metadata = {
   description: waitlistConfig.description,
 };
 
-function BulletList({ items }: { items: readonly string[] }) {
+function BulletList({
+  items,
+  marker = "dot",
+}: {
+  items: readonly string[];
+  marker?: "dot" | "sparkle";
+}) {
   return (
     <ul className="mt-4 space-y-3">
       {items.map((item) => (
-        <li key={item} className="flex gap-4 items-start">
-          <span
-            className="mt-2.5 w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0"
-            aria-hidden="true"
-          />
+        <li key={item} className="flex gap-3 items-start">
+          {marker === "sparkle" ? (
+            <span className="flex-shrink-0 leading-relaxed" aria-hidden="true">
+              ✨
+            </span>
+          ) : (
+            <span
+              className="mt-2.5 w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0"
+              aria-hidden="true"
+            />
+          )}
           <p className="text-subtext leading-relaxed">{item}</p>
         </li>
       ))}
@@ -46,7 +58,7 @@ export default function WaitlistPage() {
             <h3 className="font-serif text-xl md:text-2xl text-text tracking-tight">
               {content.opportunityHeading}
             </h3>
-            <BulletList items={content.opportunities} />
+            <BulletList items={content.opportunities} marker="sparkle" />
           </div>
 
           <div className="mt-10 space-y-6 text-subtext leading-relaxed">
@@ -59,7 +71,7 @@ export default function WaitlistPage() {
             <h3 className="font-serif text-xl md:text-2xl text-text tracking-tight">
               {content.beginHeading}
             </h3>
-            <BulletList items={content.beginItems} />
+            <BulletList items={content.beginItems} marker="sparkle" />
           </div>
 
           <p className="mt-10 text-subtext leading-relaxed">{content.closing}</p>

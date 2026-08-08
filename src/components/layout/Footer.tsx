@@ -132,7 +132,26 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <span className="text-sm text-background/70 pl-9">{siteConfig.location}</span>
+                <span className="flex items-center gap-3 text-sm text-background/70">
+                  <span
+                    className="relative flex h-6 w-6 flex-shrink-0 items-center justify-center overflow-hidden rounded-[6px] bg-accent"
+                    aria-hidden="true"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="h-3.5 w-3.5 text-text"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M12 21s-6-5.7-6-11a6 6 0 1 1 12 0c0 5.3-6 11-6 11z" />
+                      <circle cx="12" cy="10" r="2.25" />
+                    </svg>
+                  </span>
+                  <span>{siteConfig.location}</span>
+                </span>
               </li>
             </ul>
           </div>

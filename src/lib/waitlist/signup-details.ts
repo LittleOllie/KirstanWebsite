@@ -19,7 +19,12 @@ export function getSignupDetailEntries(signup: WaitlistSignup) {
 
   for (const [id, value] of Object.entries(signup.answers)) {
     if (summaryFieldIds.has(id)) continue;
-    const label = questionLabels[id] ?? id;
+    const question = [...waitlistFormQuestions, ...contactFormQuestions].find((q) => q.id === id);
+    const label = question
+      ? question.group
+        ? `${question.group} — ${question.label}`
+        : question.label
+      : questionLabels[id] ?? id;
     const formatted = formatAnswer(value);
     if (formatted === "—") continue;
     entries.push({ label, value: formatted });

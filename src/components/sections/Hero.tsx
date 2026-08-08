@@ -17,14 +17,18 @@ export function Hero() {
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8 w-full">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-8rem)]">
           <div className="order-1 text-center lg:text-left">
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] leading-tight text-text tracking-tight animate-fade-in-up animate-delay-100 [font-family:var(--font-cormorant),'Cormorant_Garamond',serif]">
-              Guiding women through deep healing to remember who they truly are
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[2.65rem] xl:text-[2.85rem] leading-tight text-text tracking-tight animate-fade-in-up animate-delay-100 [font-family:var(--font-cormorant),'Cormorant_Garamond',serif]">
+              Guiding women through
+              <br />
+              deep healing to remember
+              <br />
+              who they truly are
             </h1>
             <p className="mt-6 text-subtext text-base md:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0 animate-fade-in-up animate-delay-200">
               A grounded and compassionate space to uncover and heal the root causes beneath the patterns, beliefs and emotional wounds that keep you feeling stuck, so you can trust your inner wisdom, live authentically and experience true freedom.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-up animate-delay-300">
-              <Button href="https://calendly.com/kirstan-kirstanearl/30min" size="lg" external>
+              <Button href={siteConfig.freeConnectionCallUrl} size="lg" external>
                 Book a FREE Connection Call
               </Button>
             </div>

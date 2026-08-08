@@ -1,5 +1,38 @@
 import type { SurveyQuestion } from "./types";
 
+export const weekDays = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+] as const;
+
+export const timesOfDay = ["Morning", "Noon", "Afternoon", "Evening"] as const;
+
+const preferenceSlotQuestions: SurveyQuestion[] = [1, 2].flatMap((slot) => [
+  {
+    id: `option${slot}Day`,
+    type: "select",
+    label: "Day of the week",
+    hint: "Select day",
+    required: false,
+    group: `Option ${slot}`,
+    options: [...weekDays],
+  },
+  {
+    id: `option${slot}Time`,
+    type: "select",
+    label: "Time of day",
+    hint: "Select time",
+    required: false,
+    group: `Option ${slot}`,
+    options: [...timesOfDay],
+  },
+]);
+
 /** Shown on the waitlist page. */
 export const waitlistFormQuestions: SurveyQuestion[] = [
   {
@@ -23,6 +56,7 @@ export const waitlistFormQuestions: SurveyQuestion[] = [
     placeholder: "you@example.com",
     required: true,
   },
+  ...preferenceSlotQuestions,
   {
     id: "whatBringsYou",
     type: "textarea",
