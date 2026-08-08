@@ -6,7 +6,7 @@ export function Transformation() {
     <section id="transformation" className="py-24 md:py-32 lg:py-40 bg-background-secondary">
       <div className="mx-auto max-w-3xl px-6 lg:px-8">
         <FadeIn>
-          <h2 className="font-serif text-[clamp(0.8rem,3.2vw,1.75rem)] md:text-[clamp(1.1rem,2.4vw,1.875rem)] text-text tracking-[0.1em] uppercase text-center whitespace-nowrap">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-text tracking-tight text-center">
             {transformationContent.heading}
           </h2>
         </FadeIn>

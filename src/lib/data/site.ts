@@ -44,7 +44,7 @@ export const thisWorkIsForYou = [
 ] as const;
 
 export const transformationContent = {
-  heading: "AS YOU RETURN TO YOURSELF…",
+  heading: "As You Return to Yourself…",
   feelings: [
     "A deeper sense of peace and calm, as the need to constantly scan, anticipate and react begins to quieten.",
     "Less pressure to hold everything together all the time, allowing yourself more space to breathe, rest and simply be.",
