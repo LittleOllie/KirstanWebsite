@@ -84,6 +84,6 @@ export const waitlistConfig = {
   description:
     "A small intimate healing container for women ready to reconnect with themselves, explore beneath the surface and create lasting change.",
   successMessage:
-    "You're on the list. We'll email you as soon as spots open — thank you for raising your hand.",
+    "You're on the list. You'll be the first to know when the doors to The Healing Room open.",
   source: "waitlist",
 } as const;
